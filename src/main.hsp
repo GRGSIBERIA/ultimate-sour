@@ -1,0 +1,65 @@
+*starup
+	mes "runnning"
+
+
+*main_menu
+	cls
+	mes "Ultimate Sour"
+	mes "1. ニューゲーム"
+	mes "2. 続きから"
+	mes "3. 設定"
+	mes "4. 終了"
+	mes "入力?:"
+	wait 100
+
+	repeat
+		getkey x, 49
+		if x = 1 : goto *new_game
+		getkey x, 50
+		if x = 1 : goto *game_continue
+		getkey x, 51
+		if x = 1 : goto *configure
+		getkey x, 52
+		if x = 1 : goto *exit
+	loop
+
+*exit
+	end
+
+*new_game
+	cls
+	stop
+
+*game_continue
+	cls
+	stop
+
+*configure
+	cls
+	mes "ゲーム設定"
+
+	windowSizeX = 800
+	windowSizeY = 600
+	isFullScreen = 0
+
+	mes "画面の大きさ"
+	
+	mes "X"
+	input windowSizeY
+	
+	mes "Y"
+	input windowSizeX
+	
+	objsize 100
+	chkbox "フルスクリーンモード", isFullScreen
+
+	button "保存", *save_configure
+	button "戻る", *finalize_configure
+	stop
+
+*save_configure
+	
+	goto *finalize_configure
+
+*finalize_configure
+	goto *main_menu
